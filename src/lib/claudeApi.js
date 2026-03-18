@@ -84,10 +84,9 @@ Rules:
         {
           role: 'user',
           content: [
-            {
-              type: 'image',
-              source: { type: 'base64', media_type: mimeType, data: imageBase64 },
-            },
+            mimeType === 'application/pdf'
+              ? { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: imageBase64 } }
+              : { type: 'image', source: { type: 'base64', media_type: mimeType, data: imageBase64 } },
             { type: 'text', text: prompt },
           ],
         },

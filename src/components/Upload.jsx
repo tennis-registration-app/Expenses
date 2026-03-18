@@ -4,7 +4,7 @@ import { parseReceiptImage, fileToBase64, CATEGORIES, formatCurrency } from '../
 import StatementReview from './StatementReview.jsx'
 import ExpenseForm from './ExpenseForm.jsx'
 
-const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/heic']
+const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/heic', 'application/pdf']
 
 const STEPS = {
   IDLE: 'idle',
@@ -126,7 +126,7 @@ export default function Upload({ onSaved }) {
             Drop a receipt or statement image
           </div>
           <div style={{ color: 'var(--text-muted)', fontSize: 13 }}>
-            JPEG, PNG, WebP, HEIC — photos, screenshots, scans
+            JPEG, PNG, WebP, HEIC, PDF — photos, screenshots, scans, statements
           </div>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '1.25rem' }}>
             <span className="btn btn-ghost" style={{ pointerEvents: 'none' }}>Browse files</span>
