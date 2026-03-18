@@ -25,6 +25,8 @@ export default function Upload({ onSaved }) {
   const [imageUrl, setImageUrl] = useState(null)
   const [previewUrl, setPreviewUrl] = useState(null)
   const fileInputRef = useRef(null)
+  const cameraInputRef = useRef(null)
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
 
   const reset = useCallback(() => {
     setStep(STEPS.IDLE)
@@ -126,10 +128,14 @@ export default function Upload({ onSaved }) {
           <div style={{ color: 'var(--text-muted)', fontSize: 13 }}>
             JPEG, PNG, WebP, HEIC — photos, screenshots, scans
           </div>
-          <div style={{ marginTop: '1.25rem' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginTop: '1.25rem' }}>
             <span className="btn btn-ghost" style={{ pointerEvents: 'none' }}>Browse files</span>
+            {isMobile && (
+              <button className="btn btn-ghost" onClick={e => { e.stopPropagation(); cameraInputRef.current?.click() }}>📷 Take Photo</button>
+            )}
           </div>
           <input ref={fileInputRef} type="file" accept={ACCEPTED_TYPES.join(',')} onChange={onFileChange} style={{ display: 'none' }} />
+          <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" onChange={onFileChange} style={{ display: 'none' }} />
         </div>
       )}
 
